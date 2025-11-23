@@ -7,6 +7,11 @@ public class Alquiler {
     private int idAlquiler;
     private LocalDate inicioAlquiler;
     private LocalDate finAlquiler;
+    private int idCategoriaAlquilable;
+    private int idProducto;
+    private int idCliente;
+    private int idTransaccion;
+
     private CategoriaAlquilable categoriaAlquilable;
     private Producto producto;
     private Cliente cliente;
@@ -16,24 +21,24 @@ public class Alquiler {
     }
 
 
-    public Alquiler(LocalDate inicioAlquiler, LocalDate finAlquiler, CategoriaAlquilable categoriaAlquilable, Producto producto, Cliente cliente, Transaccion transaccion) {
+    public Alquiler(LocalDate inicioAlquiler, LocalDate finAlquiler, int idCategoriaAlquilable, int idProducto, int idCliente, int idTransaccion) {
         this.inicioAlquiler = inicioAlquiler;
         this.finAlquiler = finAlquiler;
-        this.categoriaAlquilable = categoriaAlquilable;
-        this.producto = producto;
-        this.cliente = cliente;
-        this.transaccion = transaccion;
+        this.idCategoriaAlquilable = idCategoriaAlquilable;
+        this.idProducto = idProducto;
+        this.idCliente = idCliente;
+        this.idTransaccion = idTransaccion;
     }
 
- 
-    public Alquiler(int idAlquiler, LocalDate inicioAlquiler, LocalDate finAlquiler, CategoriaAlquilable categoriaAlquilable, Producto producto, Cliente cliente, Transaccion transaccion) {
+
+    public Alquiler(int idAlquiler, LocalDate inicioAlquiler, LocalDate finAlquiler, int idCategoriaAlquilable, int idProducto, int idCliente, int idTransaccion) {
         this.idAlquiler = idAlquiler;
         this.inicioAlquiler = inicioAlquiler;
         this.finAlquiler = finAlquiler;
-        this.categoriaAlquilable = categoriaAlquilable;
-        this.producto = producto;
-        this.cliente = cliente;
-        this.transaccion = transaccion;
+        this.idCategoriaAlquilable = idCategoriaAlquilable;
+        this.idProducto = idProducto;
+        this.idCliente = idCliente;
+        this.idTransaccion = idTransaccion;
     }
 
     // Getters y Setters
