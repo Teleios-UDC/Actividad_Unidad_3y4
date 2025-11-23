@@ -7,26 +7,28 @@ public class Producto {
     private String modelo;
     private String descripcion;
     private Categoria categoria;
+    private ProductoAltaTecnologia productoAltaTecnologia;
 
 
     public Producto() {
     }
     
 
-    public Producto(String nombre, String modelo, String descripcion, Categoria categoria) {
+    public Producto(String nombre, String modelo, String descripcion, Categoria categoria, ProductoAltaTecnologia productoAltaTecnologia) {
         this.nombre = nombre;
         this.modelo = modelo;
         this.descripcion = descripcion;
         this.categoria = categoria;
+        this.productoAltaTecnologia = productoAltaTecnologia;
     }
-    
 
-    public Producto(int idProducto, String nombre, String modelo, String descripcion, Categoria categoria) {
+    public Producto(int idProducto, String nombre, String modelo, String descripcion, Categoria categoria, ProductoAltaTecnologia productoAltaTecnologia) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.modelo = modelo;
         this.descripcion = descripcion;
         this.categoria = categoria;
+        this.productoAltaTecnologia = productoAltaTecnologia;
     }
 
     // Getters y Setters
@@ -68,5 +70,15 @@ public class Producto {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+
+    public ProductoAltaTecnologia getProductoAltaTecnologia() {
+        return productoAltaTecnologia;
+    }
+
+
+    public void setProductoAltaTecnologia(ProductoAltaTecnologia altaTec) {
+        this.productoAltaTecnologia = altaTec;
     }
 }
