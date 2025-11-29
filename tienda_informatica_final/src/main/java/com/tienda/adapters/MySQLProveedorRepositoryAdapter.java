@@ -19,14 +19,14 @@ public class MySQLProveedorRepositoryAdapter implements ProveedorRepositoryPort 
         "INSERT INTO PROVEEDOR (NIF, DIRECCION_IdDIRECCION) VALUES (?, ?)"; 
         
     private static final String SQL_SELECT_PROVEEDOR_BY_ID = 
-        "SELECT p.idPROVEEDOR, p.NIF, " + // 'p.Nombre' ELIMINADO
+        "SELECT p.idPROVEEDOR, p.NIF, " +
         "d.IdDIRECCION, d.Ciudad, d.Barrio, d.Calle " +
         "FROM PROVEEDOR p " +
         "JOIN DIRECCION d ON p.DIRECCION_IdDIRECCION = d.IdDIRECCION " +
         "WHERE p.idPROVEEDOR = ?";
         
     private static final String SQL_SELECT_ALL_PROVEEDORES = 
-        "SELECT p.idPROVEEDOR, p.NIF, " + // 'p.Nombre' ELIMINADO
+        "SELECT p.idPROVEEDOR, p.NIF, " +
         "d.IdDIRECCION, d.Ciudad, d.Barrio, d.Calle " +
         "FROM PROVEEDOR p " +
         "JOIN DIRECCION d ON p.DIRECCION_IdDIRECCION = d.IdDIRECCION";

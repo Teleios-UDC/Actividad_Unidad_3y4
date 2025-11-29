@@ -20,7 +20,8 @@ public class MySQLProductoRepositoryAdapter implements ProductoRepositoryPort {
     private static final String SQL_INSERT_PRODUCTO = 
         "INSERT INTO PRODUCTO (CATEGORIA_idCATEGORIA, Nombre, Modelo, Descripcion) VALUES (?, ?, ?, ?)";
     private static final String SQL_INSERT_ALTA_TEC = 
-        "INSERT INTO PRODUCTO_ALTA_TECNOLOGIA (PRODUCTO_idPRODUCTO, CATEGORIA_ALTA_TECNOLOGIA_CATEGORIA_idCATEGORIA, PaisOrigen, FechaFabricacion) VALUES (?, ?, ?, ?)";
+        "INSERT INTO PRODUCTO_ALTA_TECNOLOGIA (PRODUCTO_idPRODUCTO, CATEGORIA_ALTA_TECNOLOGIA_CATEGORIA_idCATEGORIA, PaisOrigen, " +
+        "FechaFabricacion) VALUES (?, ?, ?, ?)";
     private static final String SQL_SELECT_PRODUCTO_BY_ID = 
         "SELECT p.idPRODUCTO, p.Nombre, p.Modelo, p.Descripcion, c.idCATEGORIA, c.Nombre as NombreCategoria, " +
         "pat.IdPRODUCTO_ALTA_TECNOLOGIA, pat.PaisOrigen, pat.FechaFabricacion " +

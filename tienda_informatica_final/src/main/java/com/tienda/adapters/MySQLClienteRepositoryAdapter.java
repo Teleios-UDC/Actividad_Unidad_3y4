@@ -4,16 +4,16 @@ import com.tienda.ports.ClienteRepositoryPort;
 import com.tienda.model.Cliente;
 import com.tienda.model.Direccion;
 import com.tienda.model.Telefono;
-import com.tienda.util.DatabaseConfig; // Se asume que esta clase existe y tiene getConnection/closeConnection
+
+import com.tienda.util.DatabaseConfig;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Adaptador de Salida (Driven Adapter): Implementa la lógica JDBC para el Flujo 2 (Cliente).
- * Implementa la relación 1:1 (Cliente tiene UNA Dirección y UN Teléfono).
- */
+
+//Adaptador de Salida: Implementa la lógica JDBC para el Flujo 2 (Cliente).
+
 public class MySQLClienteRepositoryAdapter implements ClienteRepositoryPort {
 
     // --- QUERIES SQL (AJUSTADAS PARA 1:1) ---
@@ -35,6 +35,15 @@ public class MySQLClienteRepositoryAdapter implements ClienteRepositoryPort {
         "JOIN DIRECCION d ON c.DIRECCION_IdDIRECCION = d.IdDIRECCION " +
         "JOIN Telefono t ON c.Telefono_idTelefono = t.idTelefono " + 
         "WHERE c.idCLIENTE = ?";
+
+    private static final String SQL_SELECT_CLIENTES_BY_CITY =
+        "SELECT c.idCLIENTE, c.Nombre, c.Apellido, " +
+        "d.IdDIRECCION, d.Ciudad, d.Barrio, d.Calle, " +
+        "t.idTelefono, t.Telefono, t.TipoTelefono " +
+        "FROM CLIENTE c " +
+        "JOIN DIRECCION d ON c.DIRECCION_IdDIRECCION = d.IdDIRECCION " +
+        "JOIN Telefono t ON c.Telefono_idTelefono = t.idTelefono " + 
+        "WHERE d.Ciudad = ?";
         
     private static final String SQL_SELECT_ALL_CLIENTES = 
         "SELECT c.idCLIENTE, c.Nombre, c.Apellido, " +

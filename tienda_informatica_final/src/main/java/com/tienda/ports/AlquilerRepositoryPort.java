@@ -6,6 +6,7 @@ import java.util.List;
 public interface AlquilerRepositoryPort {
 
     int save(Alquiler alquiler);
+    
     Alquiler findById(int id);
 
     List<Alquiler> findAll();

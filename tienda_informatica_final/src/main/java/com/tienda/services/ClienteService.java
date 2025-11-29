@@ -21,11 +21,20 @@ public class ClienteService implements ClienteServicePort {
     @Override
     public int registrarNuevoCliente(Cliente cliente) {
         // Validación de Lógica de Negocio
-        if (cliente.getNombre() == null || cliente.getApellido() == null) {
-            throw new IllegalArgumentException("Nombre y Apellido del cliente son obligatorios.");
+        if (cliente.getNombre() == null || cliente.getNombre().trim().isEmpty() ||
+            cliente.getApellido() == null || cliente.getApellido().trim().isEmpty()) {
+            throw new IllegalArgumentException("El nombre y el apellido del cliente son obligatorios.");
         }
-        if (cliente.getDireccion() == null || cliente.getTelefono() == null) {
-            throw new IllegalArgumentException("Se requiere Dirección y Teléfono para registrar un cliente.");
+        // Validación de Dirección
+        if (cliente.getDireccion() == null ||
+            cliente.getDireccion().getCiudad() == null || cliente.getDireccion().getCiudad().trim().isEmpty() ||
+            cliente.getDireccion().getCalle() == null || cliente.getDireccion().getCalle().trim().isEmpty()) {
+            throw new IllegalArgumentException("Los datos de la dirección (ciudad y calle) son obligatorios.");
+        }
+        // Validación de Teléfono
+        if (cliente.getTelefono() == null || cliente.getTelefono().getTelefono() <= 0 ||
+            cliente.getTelefono().getTipoTelefono() == null || cliente.getTelefono().getTipoTelefono().trim().isEmpty()) {
+            throw new IllegalArgumentException("El número y tipo de teléfono son obligatorios y deben ser válidos.");
         }
         
         System.out.println("LOG: Lógica de negocio (Service) de Cliente ejecutada. Delegando a Persistencia.");

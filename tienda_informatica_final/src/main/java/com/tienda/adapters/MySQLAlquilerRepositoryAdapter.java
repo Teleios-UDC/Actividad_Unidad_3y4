@@ -23,7 +23,8 @@ public class MySQLAlquilerRepositoryAdapter implements AlquilerRepositoryPort {
         "INSERT INTO TRANSACCION (Precio, TipoPago) VALUES (?, ?)"; 
         
     private static final String SQL_INSERT_ALQUILER = 
-        "INSERT INTO ALQUILER (CATEGORIA_ALQUILABLE_CATEGORIA_idCATEGORIA, PRODUCTO_idPRODUCTO, CLIENTE_idCLIENTE, InicioAlquier, FinAlquiler, TRANSACCION_idTRANSACCION) " +
+        "INSERT INTO ALQUILER (CATEGORIA_ALQUILABLE_CATEGORIA_idCATEGORIA, PRODUCTO_idPRODUCTO, CLIENTE_idCLIENTE, InicioAlquier, " +
+        "FinAlquiler, TRANSACCION_idTRANSACCION) " +
         "VALUES (?, ?, ?, ?, ?, ?)";
         
     private static final String SQL_SELECT_ALQUILER_BY_ID = 
@@ -74,7 +75,7 @@ public class MySQLAlquilerRepositoryAdapter implements AlquilerRepositoryPort {
                 ps.executeUpdate();
                 
                 try (ResultSet rs = ps.getGeneratedKeys()) {
-                    if (rs.next()) {
+                    if (rs.next()) {    
                         idTransaccionGenerado = rs.getInt(1);
                         transaccion.setIdTransaccion(idTransaccionGenerado); 
                     } else {
@@ -101,7 +102,7 @@ public class MySQLAlquilerRepositoryAdapter implements AlquilerRepositoryPort {
                         idAlquilerGenerado = rs.getInt(1);
                         alquiler.setIdAlquiler(idAlquilerGenerado);
                     } else {
-                        throw new SQLException("Fallo al obtener ID de Alquiler. ¿idALQUILER tiene AUTO_INCREMENT?");
+                        throw new SQLException("Fallo al obtener ID de Alquiler.");
                     }
                 }
             }

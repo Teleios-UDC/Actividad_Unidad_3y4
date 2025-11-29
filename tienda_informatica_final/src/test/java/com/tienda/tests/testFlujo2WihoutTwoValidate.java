@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 
 //Adaptador de Entrada: Simulacion de gestion de clientes Flujo 2 (CRUD)
-public class testFlujo2 {
+public class testFlujo2WihoutTwoValidate {
     private static int solicitarOpcion(Scanner scanner) {
         System.out.print(">> ");
         if (scanner.hasNextInt()) {
@@ -100,34 +100,24 @@ public class testFlujo2 {
 
     // 1. REGISTRAR CLIENTE (CREATE)
     private static void registrarCliente(Scanner scanner, ClienteServicePort servicio) {
-
-
         System.out.println("\n--- REGISTRAR NUEVO CLIENTE ---");
-        System.out.println("Nombre del Cliente: ");
-        String nombre = scanner.nextLine();
-        System.out.println("Apellido del Cliente: ");
-        String apellido = scanner.nextLine();
-
+        String nombre = solicitarCampoRequerido(scanner, "Nombre del Cliente");
+        String apellido = solicitarCampoRequerido(scanner, "Apellido del Cliente");
 
         //DIRECCIÓN
         System.out.println("\n--- Datos de Dirección ---");
-        System.out.print("Ciudad: ");
-        String ciudad = scanner.nextLine();
-        
-        System.out.print("Barrio: ");
-        String barrio = scanner.nextLine();
-        
-        System.out.print("Calle/Carrera: ");
-        String calle = scanner.nextLine();
-        
+        String ciudad = solicitarCampoRequerido(scanner, "Ciudad");
+        String barrio = solicitarCampoRequerido(scanner, "Barrio");
+        String calle = solicitarCampoRequerido(scanner, "Calle/Carrera");
+
         Direccion nuevaDireccion = new Direccion(0, ciudad, barrio, calle);
 
         // TELÉFONO
         System.out.println("\n--- Datos de Teléfono ---");
-        long numeroTelefono = solicitarNumeroTelefono(scanner);
+        Long numeroTelefono = solicitarNumeroTelefono(scanner);
         
         System.out.print("Tipo de Teléfono (Ej: Fijo, Móvil): ");
-        String tipoTelefono = scanner.nextLine();
+        String tipoTelefono = solicitarCampoRequerido(scanner, "Tipo de Teléfono");
 
         Telefono nuevoTelefono = new Telefono(0, numeroTelefono, tipoTelefono);
 
@@ -143,6 +133,18 @@ public class testFlujo2 {
         } else {
             System.out.println("Error al registrar el cliente.");
         }
+    }
+
+    private static String solicitarCampoRequerido(Scanner scanner, String mensaje) {
+        String entrada;
+        do {
+            System.out.print(mensaje + ": ");
+            entrada = scanner.nextLine().trim();
+            if (entrada.isEmpty()) {
+                System.out.println("Este campo es obligatorio. Por favor, ingrese un valor.");
+            }
+        } while (entrada.isEmpty());
+        return entrada;
     }
 
 
